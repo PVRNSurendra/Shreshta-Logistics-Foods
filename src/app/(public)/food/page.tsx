@@ -639,6 +639,552 @@
 //   );
 // }
 
+// "use client";
+
+// import Link from "next/link";
+// import { useEffect, useMemo, useState } from "react";
+
+// type ProductVariant = {
+//   id: string;
+//   label: string;
+//   price: number;
+//   stock: number;
+//   enabled: boolean;
+// };
+
+// type Product = {
+//   id: string;
+//   productId: string;
+//   slug: string;
+//   name: string;
+//   category: string;
+//   description: string;
+//   image: string;
+//   status: "ACTIVE" | "INACTIVE";
+//   featured: boolean;
+//   variants: ProductVariant[];
+//   inStock: boolean;
+// };
+
+// type ApiResponse =
+//   | {
+//       success: true;
+//       data: Record<string, unknown>[];
+//     }
+//   | {
+//       success: false;
+//       error: {
+//         code: string;
+//         message: string;
+//       };
+//     };
+
+// const CART_STORAGE_KEY = "sreshta-food-cart";
+
+// function slugify(value: string): string {
+//   return value
+//     .toLowerCase()
+//     .trim()
+//     .replace(/[^a-z0-9]+/g, "-")
+//     .replace(/(^-|-$)/g, "");
+// }
+
+// function formatPrice(amount: number): string {
+//   if (!Number.isFinite(amount)) return "₹0";
+//   return new Intl.NumberFormat("en-IN", {
+//     style: "currency",
+//     currency: "INR",
+//     maximumFractionDigits: 0,
+//   }).format(amount);
+// }
+
+// function parseStock(value: unknown, enabled: boolean): number {
+//   if (value === 0 || value === "0") return 0;
+
+//   if (value === undefined || value === null || value === "") {
+//     return enabled ? 999 : 0;
+//   }
+
+//   const n = Number(value);
+//   if (!Number.isFinite(n)) return enabled ? 999 : 0;
+//   return Math.max(0, Math.floor(n));
+// }
+
+// function normalizeProduct(
+//   raw: Record<string, unknown>,
+// ): Product | null {
+//   const id = String(raw.id || raw.productId || "");
+//   const productId = String(raw.productId || raw.id || id);
+//   const name = String(raw.name || "").trim();
+//   const slug = String(raw.slug || slugify(name) || id);
+
+//   if (!id || !name) return null;
+
+//   const status =
+//     String(raw.status || "ACTIVE").toUpperCase() === "INACTIVE"
+//       ? "INACTIVE"
+//       : "ACTIVE";
+
+//   if (status !== "ACTIVE") return null;
+
+//   const rawVariants = Array.isArray(raw.variants)
+//     ? (raw.variants as Record<string, unknown>[])
+//     : [];
+
+//   const variants: ProductVariant[] = rawVariants
+//     .map((variant, index) => {
+//       const price = Number(variant.price);
+//       if (!Number.isFinite(price) || price < 0) return null;
+
+//       const enabled =
+//         variant.enabled === undefined ? true : Boolean(variant.enabled);
+
+//       const stock = parseStock(variant.stock, enabled);
+
+//       return {
+//         id: String(
+//           variant.variantId || variant.id || `${productId}-v${index}`,
+//         ),
+//         label: String(
+//           variant.name || variant.label || `Option ${index + 1}`,
+//         ),
+//         price,
+//         stock,
+//         enabled,
+//       };
+//     })
+//     .filter(Boolean) as ProductVariant[];
+
+//   // Keep product on the home grid even when out of stock
+//   if (variants.length === 0) return null;
+
+//   const inStock = variants.some((v) => v.enabled && v.stock > 0);
+
+//   return {
+//     id,
+//     productId,
+//     slug,
+//     name,
+//     category:
+//       String(raw.categoryName || raw.category || "General").trim() ||
+//       "General",
+//     description: String(raw.description || ""),
+//     image: String(
+//       raw.imageUrl ||
+//         raw.image ||
+//         "/images/default-product-placeholder.png",
+//     ),
+//     status,
+//     featured: Boolean(raw.featured),
+//     variants,
+//     inStock,
+//   };
+// }
+
+// function getCartCount(): number {
+//   try {
+//     const raw = window.localStorage.getItem(CART_STORAGE_KEY);
+//     if (!raw) return 0;
+
+//     const parsed = JSON.parse(raw);
+//     const items = Array.isArray(parsed)
+//       ? parsed
+//       : Array.isArray(parsed?.items)
+//         ? parsed.items
+//         : [];
+
+//     return items.reduce((total: number, item: { quantity?: number }) => {
+//       const qty = Number(item?.quantity || 0);
+//       return total + (Number.isFinite(qty) ? Math.max(0, qty) : 0);
+//     }, 0);
+//   } catch {
+//     return 0;
+//   }
+// }
+
+// function Header() {
+//   const [cartCount, setCartCount] = useState(0);
+
+//   useEffect(() => {
+//     function refresh() {
+//       setCartCount(getCartCount());
+//     }
+
+//     refresh();
+//     window.addEventListener("storage", refresh);
+//     window.addEventListener("focus", refresh);
+
+//     return () => {
+//       window.removeEventListener("storage", refresh);
+//       window.removeEventListener("focus", refresh);
+//     };
+//   }, []);
+
+//   return (
+//     <header
+//       style={{
+//         position: "sticky",
+//         top: 0,
+//         zIndex: 50,
+//         background: "#fff",
+//         borderBottom: "1px solid #f0e5d6",
+//       }}
+//     >
+//       <div
+//         className="container-site"
+//         style={{
+//           minHeight: 78,
+//           display: "flex",
+//           alignItems: "center",
+//           justifyContent: "space-between",
+//           gap: 25,
+//         }}
+//       >
+//         <Link href="/food">
+//           <img
+//             src="/images/sreshta-food-logo.png"
+//             alt="Sreshta Foods"
+//             style={{ width: 165 }}
+//           />
+//         </Link>
+
+//         <nav style={{ display: "flex", gap: 25 }}>
+//           <Link href="/food">Home</Link>
+//           <Link href="/food/products">Products</Link>
+//           <Link href="/food/categories/dry-fruits">Categories</Link>
+//         </nav>
+
+//         <div style={{ display: "flex", gap: 10, alignItems: "center" }}>
+//           <Link
+//             href="/food/track"
+//             className="btn-secondary"
+//             style={{ borderColor: "#f59e0b", color: "#b45309" }}
+//           >
+//             Track Order
+//           </Link>
+//           <Link
+//             href="/food/cart"
+//             className="btn-primary"
+//             style={{ background: "#d97706" }}
+//           >
+//             🛒 Cart{cartCount > 0 ? ` (${cartCount})` : ""}
+//           </Link>
+//         </div>
+//       </div>
+//     </header>
+//   );
+// }
+
+// export default function FoodHomePage() {
+//   const [products, setProducts] = useState<Product[]>([]);
+//   const [loading, setLoading] = useState(true);
+//   const [error, setError] = useState<string | null>(null);
+//   const [search, setSearch] = useState("");
+//   const [category, setCategory] = useState("All");
+
+//   useEffect(() => {
+//     let cancelled = false;
+
+//     async function loadProducts() {
+//       try {
+//         setLoading(true);
+//         setError(null);
+
+//         const res = await fetch("/api/food/products", {
+//           method: "GET",
+//           headers: { Accept: "application/json" },
+//           cache: "no-store",
+//         });
+
+//         const json = (await res.json()) as ApiResponse;
+
+//         if (!res.ok || !json.success) {
+//           throw new Error(
+//             !json.success
+//               ? json.error.message
+//               : "Failed to load products.",
+//           );
+//         }
+
+//         const list = Array.isArray(json.data) ? json.data : [];
+//         const normalized = list
+//           .map((item) => normalizeProduct(item))
+//           .filter(Boolean) as Product[];
+
+//         if (!cancelled) setProducts(normalized);
+//       } catch (e) {
+//         if (!cancelled) {
+//           setError(
+//             e instanceof Error
+//               ? e.message
+//               : "Failed to load products.",
+//           );
+//           setProducts([]);
+//         }
+//       } finally {
+//         if (!cancelled) setLoading(false);
+//       }
+//     }
+
+//     loadProducts();
+
+//     return () => {
+//       cancelled = true;
+//     };
+//   }, []);
+
+//   const categories = useMemo(() => {
+//     const unique = Array.from(
+//       new Set(products.map((product) => product.category)),
+//     ).sort((a, b) => a.localeCompare(b));
+//     return ["All", ...unique];
+//   }, [products]);
+
+//   const filteredProducts = useMemo(() => {
+//     const query = search.trim().toLowerCase();
+
+//     return products.filter((product) => {
+//       const matchesSearch =
+//         !query ||
+//         product.name.toLowerCase().includes(query) ||
+//         product.description.toLowerCase().includes(query) ||
+//         product.category.toLowerCase().includes(query);
+
+//       const matchesCategory =
+//         category === "All" || product.category === category;
+
+//       return matchesSearch && matchesCategory;
+//     });
+//   }, [products, search, category]);
+
+//   return (
+//     <>
+//       <Header />
+
+//       <main>
+//         <section style={{ background: "#fff7ed", padding: "75px 0" }}>
+//           <div className="container-site">
+//             <span className="section-label" style={{ color: "#b45309" }}>
+//               Sreshta Foods
+//             </span>
+//             <h1 className="section-title" style={{ color: "#451a03" }}>
+//               Shop Our Products
+//             </h1>
+//             <p className="section-description">
+//               Browse our collection and choose the quantity that suits you.
+//             </p>
+//           </div>
+//         </section>
+
+//         <section className="section">
+//           <div className="container-site">
+//             <div
+//               style={{
+//                 display: "grid",
+//                 gridTemplateColumns: "1fr 220px",
+//                 gap: 12,
+//                 marginBottom: 35,
+//               }}
+//             >
+//               <input
+//                 className="input"
+//                 value={search}
+//                 onChange={(e) => setSearch(e.target.value)}
+//                 placeholder="Search products..."
+//                 disabled={loading}
+//               />
+//               <select
+//                 className="select"
+//                 value={category}
+//                 onChange={(e) => setCategory(e.target.value)}
+//                 disabled={loading}
+//               >
+//                 {categories.map((item) => (
+//                   <option value={item} key={item}>
+//                     {item}
+//                   </option>
+//                 ))}
+//               </select>
+//             </div>
+
+//             {loading ? (
+//               <div
+//                 style={{
+//                   textAlign: "center",
+//                   padding: 70,
+//                   border: "1px solid #f0e5d6",
+//                   borderRadius: 14,
+//                   background: "#fff",
+//                 }}
+//               >
+//                 <h2 style={{ color: "#451a03", marginBottom: 8 }}>
+//                   Loading products...
+//                 </h2>
+//                 <p style={{ color: "#78716c", margin: 0 }}>
+//                   Please wait while we fetch the latest catalog.
+//                 </p>
+//               </div>
+//             ) : error ? (
+//               <div
+//                 style={{
+//                   textAlign: "center",
+//                   padding: 70,
+//                   border: "1px solid #fecaca",
+//                   borderRadius: 14,
+//                   background: "#fef2f2",
+//                 }}
+//               >
+//                 <h2 style={{ color: "#991b1b", marginBottom: 8 }}>
+//                   Could not load products
+//                 </h2>
+//                 <p style={{ color: "#7f1d1d", margin: 0 }}>{error}</p>
+//                 <button
+//                   type="button"
+//                   className="btn-primary"
+//                   style={{ marginTop: 20, background: "#d97706" }}
+//                   onClick={() => window.location.reload()}
+//                 >
+//                   Try again
+//                 </button>
+//               </div>
+//             ) : filteredProducts.length === 0 ? (
+//               <div
+//                 style={{
+//                   textAlign: "center",
+//                   padding: 70,
+//                   border: "1px solid #f0e5d6",
+//                   borderRadius: 14,
+//                   background: "#fff",
+//                 }}
+//               >
+//                 <h2 style={{ color: "#451a03", marginBottom: 8 }}>
+//                   No products found
+//                 </h2>
+//                 <p style={{ color: "#78716c", margin: 0 }}>
+//                   {products.length === 0
+//                     ? "No products are available yet."
+//                     : "Try a different search or category."}
+//                 </p>
+//               </div>
+//             ) : (
+//               <div className="card-grid">
+//                 {filteredProducts.map((product) => {
+//                   const fromPrice = Math.min(
+//                     ...product.variants.map((v) => v.price),
+//                   );
+
+//                   return (
+//                     <Link
+//                       href={`/food/products/${product.slug}`}
+//                       key={product.productId}
+//                       style={{
+//                         overflow: "hidden",
+//                         border: "1px solid #f0e5d6",
+//                         borderRadius: 14,
+//                         background: "#fff",
+//                       }}
+//                     >
+//                       <div
+//                         style={{
+//                           aspectRatio: "1",
+//                           background: "#fff8ef",
+//                           display: "grid",
+//                           placeItems: "center",
+//                           position: "relative",
+//                         }}
+//                       >
+//                         {/* Top-left tag */}
+//                         {!product.inStock && (
+//                           <span
+//                             style={{
+//                               position: "absolute",
+//                               top: 12,
+//                               left: 12,
+//                               zIndex: 2,
+//                               background: "#dc2626",
+//                               color: "#fff",
+//                               fontSize: 11,
+//                               fontWeight: 800,
+//                               letterSpacing: "0.04em",
+//                               textTransform: "uppercase",
+//                               padding: "6px 10px",
+//                               borderRadius: 999,
+//                               boxShadow:
+//                                 "0 4px 12px rgba(0,0,0,0.15)",
+//                             }}
+//                           >
+//                             Out of stock
+//                           </span>
+//                         )}
+
+//                         <img
+//                           src={product.image}
+//                           alt={product.name}
+//                           style={{
+//                             width: "100%",
+//                             height: "100%",
+//                             objectFit: "cover",
+//                             opacity: product.inStock ? 1 : 0.55,
+//                           }}
+//                         />
+//                       </div>
+
+//                       <div style={{ padding: 20 }}>
+//                         <span
+//                           style={{
+//                             color: "#b45309",
+//                             fontSize: 12,
+//                             fontWeight: 750,
+//                           }}
+//                         >
+//                           {product.category}
+//                         </span>
+
+//                         <h3
+//                           style={{
+//                             color: "#451a03",
+//                             margin: "6px 0",
+//                           }}
+//                         >
+//                           {product.name}
+//                         </h3>
+
+//                         <p
+//                           style={{
+//                             margin: 0,
+//                             color: "#78716c",
+//                             fontSize: 13,
+//                           }}
+//                         >
+//                           {product.description}
+//                         </p>
+
+//                         <strong
+//                           style={{
+//                             display: "block",
+//                             marginTop: 14,
+//                             color: product.inStock
+//                               ? "#92400e"
+//                               : "#b91c1c",
+//                           }}
+//                         >
+//                           {product.inStock
+//                             ? `From ${formatPrice(fromPrice)}`
+//                             : "Out of stock"}
+//                         </strong>
+//                       </div>
+//                     </Link>
+//                   );
+//                 })}
+//               </div>
+//             )}
+//           </div>
+//         </section>
+//       </main>
+//     </>
+//   );
+// }
+
 "use client";
 
 import Link from "next/link";
@@ -700,31 +1246,25 @@ function formatPrice(amount: number): string {
 
 function parseStock(value: unknown, enabled: boolean): number {
   if (value === 0 || value === "0") return 0;
-
   if (value === undefined || value === null || value === "") {
     return enabled ? 999 : 0;
   }
-
   const n = Number(value);
   if (!Number.isFinite(n)) return enabled ? 999 : 0;
   return Math.max(0, Math.floor(n));
 }
 
-function normalizeProduct(
-  raw: Record<string, unknown>,
-): Product | null {
+function normalizeProduct(raw: Record<string, unknown>): Product | null {
   const id = String(raw.id || raw.productId || "");
   const productId = String(raw.productId || raw.id || id);
   const name = String(raw.name || "").trim();
   const slug = String(raw.slug || slugify(name) || id);
-
   if (!id || !name) return null;
 
   const status =
     String(raw.status || "ACTIVE").toUpperCase() === "INACTIVE"
       ? "INACTIVE"
       : "ACTIVE";
-
   if (status !== "ACTIVE") return null;
 
   const rawVariants = Array.isArray(raw.variants)
@@ -735,12 +1275,9 @@ function normalizeProduct(
     .map((variant, index) => {
       const price = Number(variant.price);
       if (!Number.isFinite(price) || price < 0) return null;
-
       const enabled =
         variant.enabled === undefined ? true : Boolean(variant.enabled);
-
       const stock = parseStock(variant.stock, enabled);
-
       return {
         id: String(
           variant.variantId || variant.id || `${productId}-v${index}`,
@@ -755,7 +1292,6 @@ function normalizeProduct(
     })
     .filter(Boolean) as ProductVariant[];
 
-  // Keep product on the home grid even when out of stock
   if (variants.length === 0) return null;
 
   const inStock = variants.some((v) => v.enabled && v.stock > 0);
@@ -785,14 +1321,12 @@ function getCartCount(): number {
   try {
     const raw = window.localStorage.getItem(CART_STORAGE_KEY);
     if (!raw) return 0;
-
     const parsed = JSON.parse(raw);
     const items = Array.isArray(parsed)
       ? parsed
       : Array.isArray(parsed?.items)
         ? parsed.items
         : [];
-
     return items.reduce((total: number, item: { quantity?: number }) => {
       const qty = Number(item?.quantity || 0);
       return total + (Number.isFinite(qty) ? Math.max(0, qty) : 0);
@@ -809,11 +1343,9 @@ function Header() {
     function refresh() {
       setCartCount(getCartCount());
     }
-
     refresh();
     window.addEventListener("storage", refresh);
     window.addEventListener("focus", refresh);
-
     return () => {
       window.removeEventListener("storage", refresh);
       window.removeEventListener("focus", refresh);
@@ -915,9 +1447,7 @@ export default function FoodHomePage() {
       } catch (e) {
         if (!cancelled) {
           setError(
-            e instanceof Error
-              ? e.message
-              : "Failed to load products.",
+            e instanceof Error ? e.message : "Failed to load products.",
           );
           setProducts([]);
         }
@@ -927,7 +1457,6 @@ export default function FoodHomePage() {
     }
 
     loadProducts();
-
     return () => {
       cancelled = true;
     };
@@ -942,17 +1471,14 @@ export default function FoodHomePage() {
 
   const filteredProducts = useMemo(() => {
     const query = search.trim().toLowerCase();
-
     return products.filter((product) => {
       const matchesSearch =
         !query ||
         product.name.toLowerCase().includes(query) ||
         product.description.toLowerCase().includes(query) ||
         product.category.toLowerCase().includes(query);
-
       const matchesCategory =
         category === "All" || product.category === category;
-
       return matchesSearch && matchesCategory;
     });
   }, [products, search, category]);
@@ -962,17 +1488,115 @@ export default function FoodHomePage() {
       <Header />
 
       <main>
-        <section style={{ background: "#fff7ed", padding: "75px 0" }}>
-          <div className="container-site">
-            <span className="section-label" style={{ color: "#b45309" }}>
-              Sreshta Foods
+        {/* Hero — same pattern as logistics (full-bleed background image) */}
+        <section
+          style={{
+            position: "relative",
+            minHeight: 560,
+            overflow: "hidden",
+            display: "flex",
+            alignItems: "center",
+          }}
+        >
+          <img
+            src="/images/food-hero-bg.jpg"
+            alt="Sreshta Foods delivery"
+            style={{
+              position: "absolute",
+              inset: 0,
+              width: "100%",
+              height: "100%",
+              objectFit: "cover",
+              objectPosition: "center",
+            }}
+          />
+
+          {/* Dark overlay so text stays readable */}
+          <div
+            style={{
+              position: "absolute",
+              inset: 0,
+              background:
+                "linear-gradient(105deg, rgba(28, 25, 23, 0.78) 0%, rgba(28, 25, 23, 0.45) 55%, rgba(28, 25, 23, 0.25) 100%)",
+            }}
+          />
+
+          <div
+            className="container-site"
+            style={{
+              position: "relative",
+              zIndex: 1,
+              paddingTop: 72,
+              paddingBottom: 72,
+              maxWidth: 720,
+            }}
+          >
+            <span
+              style={{
+                display: "inline-flex",
+                alignItems: "center",
+                gap: 8,
+                padding: "8px 14px",
+                borderRadius: 999,
+                border: "1px solid rgba(255,255,255,0.25)",
+                background: "rgba(255,255,255,0.12)",
+                color: "#fde68a",
+                fontSize: 12,
+                fontWeight: 700,
+                letterSpacing: "0.06em",
+                textTransform: "uppercase",
+              }}
+            >
+              Pickles · Snacks · Homemade Delights
             </span>
-            <h1 className="section-title" style={{ color: "#451a03" }}>
-              Shop Our Products
+
+            <h1
+              style={{
+                margin: "18px 0 14px",
+                color: "#fff",
+                fontSize: "clamp(2.1rem, 5vw, 3.4rem)",
+                lineHeight: 1.1,
+                fontWeight: 800,
+              }}
+            >
+              From Our Kitchen
+              <br />
+              <span style={{ color: "#86efac" }}>To Your Door</span>
             </h1>
-            <p className="section-description">
-              Browse our collection and choose the quantity that suits you.
+
+            <p
+              style={{
+                margin: "0 0 28px",
+                color: "rgba(255,255,255,0.88)",
+                fontSize: 17,
+                lineHeight: 1.6,
+                maxWidth: 520,
+              }}
+            >
+              Fresh products, safe delivery, and homemade goodness —
+              delivered across India.
             </p>
+
+            <div style={{ display: "flex", flexWrap: "wrap", gap: 12 }}>
+              <Link
+                href="/food/products"
+                className="btn-primary"
+                style={{ background: "#d97706" }}
+              >
+                Shop Products →
+              </Link>
+              {/* <Link
+                href="/food/track"
+                className="btn-secondary"
+                style={{
+                  borderColor: "rgba(255,255,255,0.45)",
+                  color: "#fff",
+                  background: "rgba(255,255,255,0.08)",
+                }}
+              >
+                Track Order
+              </Link> */}
+            </div>
           </div>
         </section>
 
@@ -1093,7 +1717,6 @@ export default function FoodHomePage() {
                           position: "relative",
                         }}
                       >
-                        {/* Top-left tag */}
                         {!product.inStock && (
                           <span
                             style={{
@@ -1109,8 +1732,7 @@ export default function FoodHomePage() {
                               textTransform: "uppercase",
                               padding: "6px 10px",
                               borderRadius: 999,
-                              boxShadow:
-                                "0 4px 12px rgba(0,0,0,0.15)",
+                              boxShadow: "0 4px 12px rgba(0,0,0,0.15)",
                             }}
                           >
                             Out of stock
@@ -1121,9 +1743,9 @@ export default function FoodHomePage() {
                           src={product.image}
                           alt={product.name}
                           style={{
-                            width: "75%",
-                            height: "75%",
-                            objectFit: "contain",
+                            width: "100%",
+                            height: "100%",
+                            objectFit: "cover",
                             opacity: product.inStock ? 1 : 0.55,
                           }}
                         />
@@ -1139,7 +1761,6 @@ export default function FoodHomePage() {
                         >
                           {product.category}
                         </span>
-
                         <h3
                           style={{
                             color: "#451a03",
@@ -1148,7 +1769,6 @@ export default function FoodHomePage() {
                         >
                           {product.name}
                         </h3>
-
                         <p
                           style={{
                             margin: 0,
@@ -1158,7 +1778,6 @@ export default function FoodHomePage() {
                         >
                           {product.description}
                         </p>
-
                         <strong
                           style={{
                             display: "block",

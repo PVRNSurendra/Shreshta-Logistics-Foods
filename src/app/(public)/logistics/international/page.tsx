@@ -1,10 +1,222 @@
+// import Link from "next/link";
+
+// function Header() {
+//   return (
+//     <header className="site-header">
+//       <div className="container-site header-inner">
+//         <Link href="/logistics">
+//           <img
+//             src="/images/sreshta-logistics-logo.png"
+//             alt="Sreshta Logistics"
+//             className="header-logo"
+//           />
+//         </Link>
+
+//         <nav className="desktop-nav">
+//           <Link href="/logistics">Home</Link>
+//           <Link href="/logistics/services">Services</Link>
+//           <Link href="/logistics/international">International</Link>
+//           <Link href="/logistics/domestic">Domestic</Link>
+//           <Link href="/logistics/cargo-freight">Cargo & Freight</Link>
+//           <Link href="/logistics/about">About</Link>
+//           <Link href="/logistics/contact">Contact</Link>
+//         </nav>
+
+//         <div className="header-actions">
+//           <Link href="/logistics/track" className="btn-secondary">
+//             Track
+//           </Link>
+//           <Link href="/logistics/book-freight" className="btn-primary">
+//             Book a Freight
+//           </Link>
+//         </div>
+//       </div>
+//     </header>
+//   );
+// }
+
+// function Footer() {
+//   return (
+//     <footer className="footer">
+//       <div className="container-site footer-main">
+//         <div>
+//           <img
+//             src="/images/sreshta-logistics-logo.png"
+//             alt="Sreshta Logistics"
+//             className="footer-logo"
+//           />
+//           <p>Professional logistics solutions for movement across borders.</p>
+//         </div>
+
+//         <div>
+//           <h3>Services</h3>
+//           <div className="footer-links">
+//             <Link href="/logistics/international">International</Link>
+//             <Link href="/logistics/domestic">Domestic</Link>
+//             <Link href="/logistics/cargo-freight">Cargo & Freight</Link>
+//           </div>
+//         </div>
+
+//         <div>
+//           <h3>Quick Links</h3>
+//           <div className="footer-links">
+//             <Link href="/logistics/track">Track Shipment</Link>
+//             <Link href="/logistics/book-freight">Book Freight</Link>
+//             <Link href="/logistics/contact">Contact</Link>
+//           </div>
+//         </div>
+
+//         <div>
+//           <h3>Contact</h3>
+//           <div className="footer-links">
+//             <a href="tel:+919493924742">+91 94939 24742</a>
+//             <a href="tel:+918712164677">+91 87121 64677</a>
+//           </div>
+//         </div>
+//       </div>
+
+//       <div className="container-site footer-bottom">
+//         © {new Date().getFullYear()} Sreshta Logistics.
+//       </div>
+//     </footer>
+//   );
+// }
+
+// export default function InternationalPage() {
+//   return (
+//     <>
+//       <Header />
+
+//       <main>
+//         <section className="page-hero">
+//           <div className="container-site">
+//             <span className="section-label" style={{ color: "#78e1e4" }}>
+//               International Logistics
+//             </span>
+
+//             <h1>Connect Your Shipments to Global Destinations</h1>
+
+//             <p>
+//               International logistics solutions designed for documents,
+//               parcels and commercial shipments requiring professional
+//               cross-border coordination.
+//             </p>
+//           </div>
+//         </section>
+
+//         <section className="section">
+//           <div className="container-site">
+//             <div className="split-grid">
+//               <div>
+//                 <span className="section-label">International Shipping</span>
+
+//                 <h2 className="section-title">
+//                   Move Beyond Borders With Confidence
+//                 </h2>
+
+//                 <p className="section-description">
+//                   Sreshta International Logistics is designed to simplify
+//                   cross-border shipping through clear coordination, shipment
+//                   visibility and flexible service options.
+//                 </p>
+
+//                 <ul className="feature-list">
+//                   <li>
+//                     <span className="check">✓</span>
+//                     <span>International document and parcel movement.</span>
+//                   </li>
+
+//                   <li>
+//                     <span className="check">✓</span>
+//                     <span>Commercial shipment coordination.</span>
+//                   </li>
+
+//                   <li>
+//                     <span className="check">✓</span>
+//                     <span>Shipment status visibility using AWB tracking.</span>
+//                   </li>
+
+//                   <li>
+//                     <span className="check">✓</span>
+//                     <span>Flexible shipping support for business requirements.</span>
+//                   </li>
+//                 </ul>
+
+//                 <div style={{ marginTop: 28 }}>
+//                   <Link href="/logistics/book-freight" className="btn-primary">
+//                     Discuss Your Shipment →
+//                   </Link>
+//                 </div>
+//               </div>
+
+//               <div className="image-card">
+//                 <img
+//                   src="/images/logistics-hero-bg.jpg"
+//                   alt="International logistics"
+//                 />
+//               </div>
+//             </div>
+//           </div>
+//         </section>
+
+//         <section className="section" style={{ background: "#f5f8fb" }}>
+//           <div className="container-site">
+//             <span className="section-label">What We Focus On</span>
+
+//             <h2 className="section-title">
+//               A Professional International Shipping Experience
+//             </h2>
+
+//             <div className="card-grid" style={{ marginTop: 40 }}>
+//               {[
+//                 ["01", "Secure Movement", "Shipment handling focused on safe movement."],
+//                 ["02", "Visibility", "Track shipment progress using your AWB."],
+//                 ["03", "Coordination", "Structured support for cross-border requirements."],
+//                 ["04", "Business Support", "Solutions designed for recurring commercial shipments."],
+//               ].map(([number, title, text]) => (
+//                 <div className="service-card" key={number}>
+//                   <span className="section-label">{number}</span>
+//                   <h3>{title}</h3>
+//                   <p>{text}</p>
+//                 </div>
+//               ))}
+//             </div>
+//           </div>
+//         </section>
+
+//         <section className="section dark-section">
+//           <div className="container-site">
+//             <h2 className="section-title">
+//               Need to Send a Shipment Internationally?
+//             </h2>
+
+//             <p className="section-description">
+//               Share your shipment requirement with our team.
+//             </p>
+
+//             <div style={{ marginTop: 28 }}>
+//               <Link href="/logistics/pickup-request" className="btn-primary">
+//                 Request a Pickup →
+//               </Link>
+//             </div>
+//           </div>
+//         </section>
+//       </main>
+
+//       <Footer />
+//     </>
+//   );
+// }
+
 import Link from "next/link";
+
+import { CONTACTS, ROUTES } from "@/utils/constants";
 
 function Header() {
   return (
     <header className="site-header">
       <div className="container-site header-inner">
-        <Link href="/logistics">
+        <Link href={ROUTES.LOGISTICS}>
           <img
             src="/images/sreshta-logistics-logo.png"
             alt="Sreshta Logistics"
@@ -13,20 +225,20 @@ function Header() {
         </Link>
 
         <nav className="desktop-nav">
-          <Link href="/logistics">Home</Link>
-          <Link href="/logistics/services">Services</Link>
-          <Link href="/logistics/international">International</Link>
-          <Link href="/logistics/domestic">Domestic</Link>
-          <Link href="/logistics/cargo-freight">Cargo & Freight</Link>
-          <Link href="/logistics/about">About</Link>
-          <Link href="/logistics/contact">Contact</Link>
+          <Link href={ROUTES.LOGISTICS}>Home</Link>
+          <Link href={ROUTES.LOGISTICS_SERVICES}>Services</Link>
+          <Link href={ROUTES.LOGISTICS_INTERNATIONAL}>International</Link>
+          <Link href={ROUTES.LOGISTICS_DOMESTIC}>Domestic</Link>
+          <Link href={ROUTES.LOGISTICS_CARGO}>Cargo & Freight</Link>
+          <Link href={ROUTES.LOGISTICS_ABOUT}>About</Link>
+          <Link href={ROUTES.LOGISTICS_CONTACT}>Contact</Link>
         </nav>
 
         <div className="header-actions">
-          <Link href="/logistics/track" className="btn-secondary">
+          <Link href={ROUTES.LOGISTICS_TRACK} className="btn-secondary">
             Track
           </Link>
-          <Link href="/logistics/book-freight" className="btn-primary">
+          <Link href={ROUTES.LOGISTICS_BOOK} className="btn-primary">
             Book a Freight
           </Link>
         </div>
@@ -51,26 +263,81 @@ function Footer() {
         <div>
           <h3>Services</h3>
           <div className="footer-links">
-            <Link href="/logistics/international">International</Link>
-            <Link href="/logistics/domestic">Domestic</Link>
-            <Link href="/logistics/cargo-freight">Cargo & Freight</Link>
+            <Link href={ROUTES.LOGISTICS_INTERNATIONAL}>International</Link>
+            <Link href={ROUTES.LOGISTICS_DOMESTIC}>Domestic</Link>
+            <Link href={ROUTES.LOGISTICS_CARGO}>Cargo & Freight</Link>
           </div>
         </div>
 
         <div>
           <h3>Quick Links</h3>
           <div className="footer-links">
-            <Link href="/logistics/track">Track Shipment</Link>
-            <Link href="/logistics/book-freight">Book Freight</Link>
-            <Link href="/logistics/contact">Contact</Link>
+            <Link href={ROUTES.LOGISTICS_TRACK}>Track Shipment</Link>
+            <Link href={ROUTES.LOGISTICS_BOOK}>Book Freight</Link>
+            <Link href={ROUTES.LOGISTICS_CONTACT}>Contact</Link>
           </div>
         </div>
 
         <div>
-          <h3>Contact</h3>
+          <h3>Get in Touch</h3>
           <div className="footer-links">
-            <a href="tel:+919493924742">+91 94939 24742</a>
-            <a href="tel:+918712164677">+91 87121 64677</a>
+            <p
+              style={{
+                margin: "0 0 2px",
+                fontSize: 12,
+                fontWeight: 400,
+                letterSpacing: "0.04em",
+                opacity: 0.85,
+              }}
+            >
+              Phone
+            </p>
+
+            <div style={{ marginBottom: 10 }}>
+              <h3 style={{ display: "block", lineHeight: 1.2, margin: 0 }}>
+                {CONTACTS.MANAGING_DIRECTOR.name}
+              </h3>
+              <span
+                style={{
+                  display: "block",
+                  fontSize: 12,
+                  marginTop: 7,
+                  opacity: 0.85,
+                }}
+              >
+                {CONTACTS.MANAGING_DIRECTOR.role}
+              </span>
+              <a
+                href={`tel:+91${CONTACTS.MANAGING_DIRECTOR.phone}`}
+                style={{ display: "inline-block", marginTop: 4 }}
+              >
+                {CONTACTS.MANAGING_DIRECTOR.phone}
+              </a>
+            </div>
+
+            <div style={{ marginBottom: 8 }}>
+              <h3 style={{ display: "block", lineHeight: 1.2, margin: 0 }}>
+                {CONTACTS.PARTNER.name}
+              </h3>
+              <span
+                style={{
+                  display: "block",
+                  fontSize: 12,
+                  marginTop: 7,
+                  opacity: 0.85,
+                }}
+              >
+                {CONTACTS.PARTNER.role}
+              </span>
+              <a
+                href={`tel:+91${CONTACTS.PARTNER.phone}`}
+                style={{ display: "inline-block", marginTop: 4 }}
+              >
+                {CONTACTS.PARTNER.phone}
+              </a>
+            </div>
+
+            <span>India</span>
           </div>
         </div>
       </div>
@@ -97,9 +364,9 @@ export default function InternationalPage() {
             <h1>Connect Your Shipments to Global Destinations</h1>
 
             <p>
-              International logistics solutions designed for documents,
-              parcels and commercial shipments requiring professional
-              cross-border coordination.
+              International logistics solutions designed for documents, parcels
+              and commercial shipments requiring professional cross-border
+              coordination.
             </p>
           </div>
         </section>
@@ -133,17 +400,21 @@ export default function InternationalPage() {
 
                   <li>
                     <span className="check">✓</span>
-                    <span>Shipment status visibility using AWB tracking.</span>
+                    <span>
+                      Shipment status visibility using AWB tracking.
+                    </span>
                   </li>
 
                   <li>
                     <span className="check">✓</span>
-                    <span>Flexible shipping support for business requirements.</span>
+                    <span>
+                      Flexible shipping support for business requirements.
+                    </span>
                   </li>
                 </ul>
 
                 <div style={{ marginTop: 28 }}>
-                  <Link href="/logistics/book-freight" className="btn-primary">
+                  <Link href={ROUTES.LOGISTICS_BOOK} className="btn-primary">
                     Discuss Your Shipment →
                   </Link>
                 </div>
@@ -169,10 +440,22 @@ export default function InternationalPage() {
 
             <div className="card-grid" style={{ marginTop: 40 }}>
               {[
-                ["01", "Secure Movement", "Shipment handling focused on safe movement."],
+                [
+                  "01",
+                  "Secure Movement",
+                  "Shipment handling focused on safe movement.",
+                ],
                 ["02", "Visibility", "Track shipment progress using your AWB."],
-                ["03", "Coordination", "Structured support for cross-border requirements."],
-                ["04", "Business Support", "Solutions designed for recurring commercial shipments."],
+                [
+                  "03",
+                  "Coordination",
+                  "Structured support for cross-border requirements.",
+                ],
+                [
+                  "04",
+                  "Business Support",
+                  "Solutions designed for recurring commercial shipments.",
+                ],
               ].map(([number, title, text]) => (
                 <div className="service-card" key={number}>
                   <span className="section-label">{number}</span>
@@ -195,7 +478,7 @@ export default function InternationalPage() {
             </p>
 
             <div style={{ marginTop: 28 }}>
-              <Link href="/logistics/pickup-request" className="btn-primary">
+              <Link href={ROUTES.LOGISTICS_PICKUP} className="btn-primary">
                 Request a Pickup →
               </Link>
             </div>

@@ -124,8 +124,15 @@ export default function FoodPublicLayout({
           }}
         >
           <div>
-            <strong style={{ color: "#451a03" }}>Sreshta Foods</strong>
-            <p style={{ marginTop: 10, color: "#78716c", fontSize: 14 }}>
+            {/* <strong style={{ color: "#451a03" }}>Sreshta Foods</strong> */}
+            <Link href="/food">
+              <img
+                src="/images/sreshta-food-logo.png"
+                alt="Sreshta Foods"
+                style={{ width: 165,marginTop: -60 }}
+              />
+            </Link>
+            <p style={{ marginTop: -40, color: "#78716c", fontSize: 14 }}>
               Quality food products with simple ordering and delivery.
             </p>
           </div>

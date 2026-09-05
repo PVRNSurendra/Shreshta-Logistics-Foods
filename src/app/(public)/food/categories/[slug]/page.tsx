@@ -417,9 +417,9 @@ export default function CategoryPage() {
                         src={product.image}
                         alt={product.name}
                         style={{
-                          width: "75%",
-                          height: "75%",
-                          objectFit: "contain",
+                          width: "100%",
+                          height: "100%",
+                          objectFit: "cover",
                         }}
                       />
                     </div>

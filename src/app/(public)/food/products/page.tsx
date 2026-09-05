@@ -1408,9 +1408,9 @@ export default function ProductsPage() {
                           src={product.image}
                           alt={product.name}
                           style={{
-                            width: "75%",
-                            height: "75%",
-                            objectFit: "contain",
+                            width: "100%",
+                            height: "100%",
+                            objectFit: "cover",
                             opacity: product.inStock ? 1 : 0.55,
                           }}
                         />

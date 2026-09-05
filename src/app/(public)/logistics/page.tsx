@@ -2175,6 +2175,437 @@
 
 
 
+// import Link from "next/link";
+
+// import { CONTACTS, ROUTES } from "@/utils/constants";
+// import HomeTrackForm from "@/components/public/logistics/HomeTrackForm";
+
+// const services = [
+//   {
+//     icon: "✈",
+//     title: "International Logistics",
+//     description:
+//       "Reliable international shipment solutions for documents, parcels and commercial cargo.",
+//     href: ROUTES.LOGISTICS_INTERNATIONAL,
+//   },
+//   {
+//     icon: "▣",
+//     title: "Domestic Logistics",
+//     description:
+//       "Fast and dependable shipping solutions connecting destinations across India.",
+//     href: ROUTES.LOGISTICS_DOMESTIC,
+//   },
+//   {
+//     icon: "⚓",
+//     title: "Cargo & Freight",
+//     description:
+//       "Flexible freight solutions for larger shipments, commercial goods and cargo movement.",
+//     href: ROUTES.LOGISTICS_CARGO,
+//   },
+//   {
+//     icon: "⌖",
+//     title: "Pickup Request",
+//     description:
+//       "Request a convenient pickup from your location and let our team handle the next steps.",
+//     href: ROUTES.LOGISTICS_PICKUP,
+//   },
+// ];
+
+// const steps = [
+//   {
+//     number: "01",
+//     title: "Book Your Shipment",
+//     description:
+//       "Share your shipment details and choose the service that fits your requirement.",
+//   },
+//   {
+//     number: "02",
+//     title: "Pickup & Processing",
+//     description:
+//       "Our team coordinates pickup and prepares your shipment for secure movement.",
+//   },
+//   {
+//     number: "03",
+//     title: "Track in Transit",
+//     description:
+//       "Follow your shipment through its journey using the Sreshta AWB tracking system.",
+//   },
+//   {
+//     number: "04",
+//     title: "Safe Delivery",
+//     description:
+//       "Your shipment reaches its destination with visibility throughout the process.",
+//   },
+// ];
+
+// const testimonials = [
+//   {
+//     text: "The process was simple and the shipment updates gave us confidence throughout the journey.",
+//     name: "Business Customer",
+//   },
+//   {
+//     text: "Sreshta made our regular shipping requirements easier to manage with responsive support.",
+//     name: "Commercial Client",
+//   },
+//   {
+//     text: "A professional logistics experience with clear communication from pickup to delivery.",
+//     name: "Retail Customer",
+//   },
+// ];
+
+// function Header() {
+//   return (
+//     <header className="site-header">
+//       <div className="container-site header-inner">
+//         <Link href={ROUTES.LOGISTICS} aria-label="Sreshta Logistics home">
+//           <img
+//             src="/images/sreshta-logistics-logo.png"
+//             alt="Sreshta Logistics"
+//             className="header-logo"
+//           />
+//         </Link>
+
+//         <nav className="desktop-nav" aria-label="Main navigation">
+//           <Link href={ROUTES.LOGISTICS}>Home</Link>
+//           <Link href={ROUTES.LOGISTICS_SERVICES}>Services</Link>
+//           <Link href={ROUTES.LOGISTICS_INTERNATIONAL}>International</Link>
+//           <Link href={ROUTES.LOGISTICS_DOMESTIC}>Domestic</Link>
+//           <Link href={ROUTES.LOGISTICS_CARGO}>Cargo & Freight</Link>
+//           <Link href={ROUTES.LOGISTICS_ABOUT}>About</Link>
+//           <Link href={ROUTES.LOGISTICS_CONTACT}>Contact</Link>
+//         </nav>
+
+//         <div className="header-actions">
+//           <Link href={ROUTES.LOGISTICS_TRACK} className="btn-secondary">
+//             Track
+//           </Link>
+//           <Link href={ROUTES.LOGISTICS_BOOK} className="btn-primary">
+//             Book a Freight
+//           </Link>
+//         </div>
+//       </div>
+//     </header>
+//   );
+// }
+
+// function Footer() {
+//   return (
+//     <footer className="footer">
+//       <div className="container-site footer-main">
+//         <div>
+//           <img
+//             src="/images/sreshta-logistics-logo.png"
+//             alt="Sreshta Logistics"
+//             className="footer-logo"
+//           />
+//           <p>
+//             Professional logistics solutions designed around reliable
+//             movement, clear communication and shipment visibility.
+//           </p>
+//         </div>
+
+//         <div>
+//           <h3>Services</h3>
+//           <div className="footer-links">
+//             <Link href={ROUTES.LOGISTICS_INTERNATIONAL}>International</Link>
+//             <Link href={ROUTES.LOGISTICS_DOMESTIC}>Domestic</Link>
+//             <Link href={ROUTES.LOGISTICS_CARGO}>Cargo & Freight</Link>
+//             <Link href={ROUTES.LOGISTICS_PICKUP}>Pickup Request</Link>
+//           </div>
+//         </div>
+
+//         <div>
+//           <h3>Company</h3>
+//           <div className="footer-links">
+//             <Link href={ROUTES.LOGISTICS_ABOUT}>About Us</Link>
+//             <Link href={ROUTES.LOGISTICS_PARTNERSHIP}>Partnership</Link>
+//             <Link href={ROUTES.LOGISTICS_CONTACT}>Contact</Link>
+//             <Link href={ROUTES.LOGISTICS_TRACK}>Track Shipment</Link>
+//           </div>
+//         </div>
+
+//         <div>
+//           <h3>Get in Touch</h3>
+//           <div className="footer-links">
+//             <a href={`tel:+91${CONTACTS.MANAGING_DIRECTOR.phone}`}>
+//               +91 {CONTACTS.MANAGING_DIRECTOR.phone}
+//             </a>
+//             <a href={`tel:+91${CONTACTS.PARTNER.phone}`}>
+//               +91 {CONTACTS.PARTNER.phone}
+//             </a>
+//             <span>India</span>
+//           </div>
+//         </div>
+//       </div>
+
+//       <div className="container-site footer-bottom">
+//         © {new Date().getFullYear()} Sreshta Logistics. All rights reserved.
+//       </div>
+//     </footer>
+//   );
+// }
+
+// export default function LogisticsHomePage() {
+//   return (
+//     <>
+//       <Header />
+
+//       <main>
+//         <section className="hero">
+//           <div className="container-site hero-inner">
+//             <div className="hero-content">
+//               <span className="hero-eyebrow">
+//                 Domestic • International • Cargo
+//               </span>
+
+//               <h1 className="hero-title">
+//                 Moving Your World.
+//                 <br />
+//                 <span>One Shipment at a Time.</span>
+//               </h1>
+
+//               <p className="hero-description">
+//                 Reliable logistics and freight solutions built around secure
+//                 movement, clear communication and shipment visibility.
+//               </p>
+
+//               <div className="hero-actions">
+//                 <Link href={ROUTES.LOGISTICS_BOOK} className="btn-primary">
+//                   Book a Freight →
+//                 </Link>
+//                 <Link href={ROUTES.LOGISTICS_SERVICES} className="btn-secondary">
+//                   Explore Services
+//                 </Link>
+//               </div>
+//             </div>
+//           </div>
+//         </section>
+
+//         <section className="tracking-strip">
+//           <div className="container-site">
+//             <div className="tracking-card">
+//               <div className="tracking-heading">
+//                 <div>
+//                   <h2>Track Your Shipment</h2>
+//                   <p>
+//                     Enter your AWB number to view the latest shipment status.
+//                   </p>
+//                 </div>
+//               </div>
+
+//               {/* Live navigation to dynamic tracking page */}
+//               <HomeTrackForm />
+//             </div>
+//           </div>
+//         </section>
+
+//         <section className="section">
+//           <div className="container-site">
+//             <span className="section-label">Our Services</span>
+//             <h2 className="section-title">
+//               Complete Logistics Solutions for Every Requirement
+//             </h2>
+//             <p className="section-description">
+//               From individual shipments to commercial freight, Sreshta
+//               provides flexible logistics solutions designed around your
+//               delivery requirements.
+//             </p>
+
+//             <div className="card-grid" style={{ marginTop: 40 }}>
+//               {services.map((service) => (
+//                 <Link
+//                   href={service.href}
+//                   className="service-card"
+//                   key={service.title}
+//                 >
+//                   <div className="service-icon">{service.icon}</div>
+//                   <h3>{service.title}</h3>
+//                   <p>{service.description}</p>
+//                 </Link>
+//               ))}
+//             </div>
+//           </div>
+//         </section>
+
+//         <section className="section" style={{ background: "#f5f8fb" }}>
+//           <div className="container-site">
+//             <div className="split-grid">
+//               <div>
+//                 <span className="section-label">Shipping Network</span>
+//                 <h2 className="section-title">
+//                   Reliable Movement Across India and Beyond
+//                 </h2>
+//                 <p className="section-description">
+//                   Choose the logistics mode and service model that matches your
+//                   shipment. Our solutions are designed for documents, parcels,
+//                   commercial consignments and cargo.
+//                 </p>
+
+//                 <ul className="feature-list">
+//                   <li>
+//                     <span className="check">✓</span>
+//                     <span>
+//                       International shipment support with professional
+//                       documentation and coordination.
+//                     </span>
+//                   </li>
+//                   <li>
+//                     <span className="check">✓</span>
+//                     <span>
+//                       Domestic delivery solutions for businesses and
+//                       individual customers.
+//                     </span>
+//                   </li>
+//                   <li>
+//                     <span className="check">✓</span>
+//                     <span>
+//                       Cargo and freight services for larger and commercial
+//                       shipments.
+//                     </span>
+//                   </li>
+//                   <li>
+//                     <span className="check">✓</span>
+//                     <span>
+//                       Shipment tracking for better visibility throughout the
+//                       journey.
+//                     </span>
+//                   </li>
+//                 </ul>
+
+//                 <div style={{ marginTop: 30 }}>
+//                   <Link href={ROUTES.LOGISTICS_SERVICES} className="btn-primary">
+//                     View All Services →
+//                   </Link>
+//                 </div>
+//               </div>
+
+//               <div className="image-card">
+//                 <img
+//                   src="/images/logistics-hero-bg.jpg"
+//                   alt="Sreshta logistics transportation"
+//                 />
+//               </div>
+//             </div>
+//           </div>
+//         </section>
+
+//         <section className="section">
+//           <div className="container-site">
+//             <span className="section-label">How It Works</span>
+//             <h2 className="section-title">
+//               Simple, Transparent and Reliable
+//             </h2>
+//             <p className="section-description">
+//               We keep the shipment journey straightforward so customers can
+//               focus on their business while Sreshta handles the logistics.
+//             </p>
+
+//             <div className="steps" style={{ marginTop: 45 }}>
+//               {steps.map((step) => (
+//                 <div className="step" key={step.number}>
+//                   <span className="step-number">{step.number}</span>
+//                   <h3>{step.title}</h3>
+//                   <p>{step.description}</p>
+//                 </div>
+//               ))}
+//             </div>
+//           </div>
+//         </section>
+
+//         <section className="section">
+//           <div className="container-site">
+//             <div className="stats-grid">
+//               <div className="stat">
+//                 <strong>24/7</strong>
+//                 <span>Shipment Visibility</span>
+//               </div>
+//               <div className="stat">
+//                 <strong>3+</strong>
+//                 <span>Core Shipping Modes</span>
+//               </div>
+//               <div className="stat">
+//                 <strong>100%</strong>
+//                 <span>Customer Focus</span>
+//               </div>
+//               <div className="stat">
+//                 <strong>1</strong>
+//                 <span>Connected Logistics Platform</span>
+//               </div>
+//             </div>
+//           </div>
+//         </section>
+
+//         <section className="section dark-section">
+//           <div className="container-site">
+//             <span className="section-label" style={{ color: "#6de1e5" }}>
+//               Customer Trust
+//             </span>
+//             <h2 className="section-title">
+//               Professional Service. Clear Communication. Reliable Movement.
+//             </h2>
+//             <p className="section-description">
+//               Sreshta is designed to give customers confidence from booking
+//               through delivery.
+//             </p>
+
+//             <div className="testimonial-grid" style={{ marginTop: 40 }}>
+//               {testimonials.map((item) => (
+//                 <div className="testimonial" key={item.name}>
+//                   <p>“{item.text}”</p>
+//                   <strong>{item.name}</strong>
+//                 </div>
+//               ))}
+//             </div>
+//           </div>
+//         </section>
+
+//         <section className="section">
+//           <div className="container-site">
+//             <div
+//               style={{
+//                 borderRadius: 18,
+//                 background: "linear-gradient(110deg, #06284c, #087f87)",
+//                 padding: "50px",
+//                 color: "white",
+//               }}
+//             >
+//               <h2
+//                 style={{
+//                   margin: 0,
+//                   fontSize: "clamp(2rem, 4vw, 3rem)",
+//                   lineHeight: 1.05,
+//                 }}
+//               >
+//                 Ready to Move Your Shipment?
+//               </h2>
+//               <p
+//                 style={{
+//                   maxWidth: 650,
+//                   margin: "16px 0 25px",
+//                   color: "rgba(255,255,255,.78)",
+//                 }}
+//               >
+//                 Book a freight shipment, request a pickup or speak with our
+//                 team about your logistics requirement.
+//               </p>
+//               <div className="hero-actions">
+//                 <Link href={ROUTES.LOGISTICS_BOOK} className="btn-primary">
+//                   Book a Freight
+//                 </Link>
+//                 <Link href={ROUTES.LOGISTICS_PICKUP} className="btn-secondary">
+//                   Request Pickup
+//                 </Link>
+//               </div>
+//             </div>
+//           </div>
+//         </section>
+//       </main>
+
+//       <Footer />
+//     </>
+//   );
+// }
+
 import Link from "next/link";
 
 import { CONTACTS, ROUTES } from "@/utils/constants";
@@ -2299,8 +2730,8 @@ function Footer() {
             className="footer-logo"
           />
           <p>
-            Professional logistics solutions designed around reliable
-            movement, clear communication and shipment visibility.
+            Professional logistics solutions designed around reliable movement,
+            clear communication and shipment visibility.
           </p>
         </div>
 
@@ -2327,12 +2758,62 @@ function Footer() {
         <div>
           <h3>Get in Touch</h3>
           <div className="footer-links">
-            <a href={`tel:+91${CONTACTS.MANAGING_DIRECTOR.phone}`}>
-              +91 {CONTACTS.MANAGING_DIRECTOR.phone}
-            </a>
-            <a href={`tel:+91${CONTACTS.PARTNER.phone}`}>
-              +91 {CONTACTS.PARTNER.phone}
-            </a>
+            <p
+              style={{
+                margin: "0 0 2px",
+                fontSize: 12,
+                fontWeight: 400,
+                letterSpacing: "0.04em",
+                opacity: 0.85,
+              }}
+            >
+              Phone
+            </p>
+
+            <div style={{ marginBottom: 10 }}>
+              <h3 style={{ display: "block", lineHeight: 0 }}>
+                {CONTACTS.MANAGING_DIRECTOR.name}
+              </h3>
+              <span
+                style={{
+                  display: "block",
+                  fontSize: 12,
+                  marginTop: 7,
+                  opacity: 0.85,
+                }}
+              >
+                {CONTACTS.MANAGING_DIRECTOR.role}
+              </span>
+              <a
+                href={`tel:+91${CONTACTS.MANAGING_DIRECTOR.phone}`}
+                style={{ display: "inline-block", marginTop: 4 }}
+              >
+                {CONTACTS.MANAGING_DIRECTOR.phone}
+              </a>
+            </div>
+
+            <div style={{ marginBottom: 8 }}>
+              <h3 style={{ display: "block", lineHeight: 0 }}>
+                {CONTACTS.PARTNER.name}
+              </h3>
+              <span
+                style={{
+                  display: "block",
+                  fontSize: 12,
+                  marginTop: 7,
+                  opacity: 0.85,
+                }}
+              >
+                {CONTACTS.PARTNER.role}
+              </span>
+              <a
+                href={`tel:+91${CONTACTS.PARTNER.phone}`}
+                style={{ display: "inline-block", marginTop: 4 }}
+              >
+                {CONTACTS.PARTNER.phone}
+              </a>
+            </div>
+
             <span>India</span>
           </div>
         </div>
@@ -2393,7 +2874,6 @@ export default function LogisticsHomePage() {
                 </div>
               </div>
 
-              {/* Live navigation to dynamic tracking page */}
               <HomeTrackForm />
             </div>
           </div>
@@ -2406,9 +2886,9 @@ export default function LogisticsHomePage() {
               Complete Logistics Solutions for Every Requirement
             </h2>
             <p className="section-description">
-              From individual shipments to commercial freight, Sreshta
-              provides flexible logistics solutions designed around your
-              delivery requirements.
+              From individual shipments to commercial freight, Sreshta provides
+              flexible logistics solutions designed around your delivery
+              requirements.
             </p>
 
             <div className="card-grid" style={{ marginTop: 40 }}>
@@ -2452,8 +2932,8 @@ export default function LogisticsHomePage() {
                   <li>
                     <span className="check">✓</span>
                     <span>
-                      Domestic delivery solutions for businesses and
-                      individual customers.
+                      Domestic delivery solutions for businesses and individual
+                      customers.
                     </span>
                   </li>
                   <li>
@@ -2492,12 +2972,10 @@ export default function LogisticsHomePage() {
         <section className="section">
           <div className="container-site">
             <span className="section-label">How It Works</span>
-            <h2 className="section-title">
-              Simple, Transparent and Reliable
-            </h2>
+            <h2 className="section-title">Simple, Transparent and Reliable</h2>
             <p className="section-description">
-              We keep the shipment journey straightforward so customers can
-              focus on their business while Sreshta handles the logistics.
+              We keep the shipment journey straightforward so customers can focus
+              on their business while Sreshta handles the logistics.
             </p>
 
             <div className="steps" style={{ marginTop: 45 }}>
@@ -2585,8 +3063,8 @@ export default function LogisticsHomePage() {
                   color: "rgba(255,255,255,.78)",
                 }}
               >
-                Book a freight shipment, request a pickup or speak with our
-                team about your logistics requirement.
+                Book a freight shipment, request a pickup or speak with our team
+                about your logistics requirement.
               </p>
               <div className="hero-actions">
                 <Link href={ROUTES.LOGISTICS_BOOK} className="btn-primary">
