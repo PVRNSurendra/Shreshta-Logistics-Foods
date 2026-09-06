@@ -1376,7 +1376,8 @@ function Header() {
           <img
             src="/images/sreshta-food-logo.png"
             alt="Sreshta Foods"
-            style={{ width: 165 }}
+            // style={{ width: 165 }}
+            className="food-header-logo"
           />
         </Link>
 
