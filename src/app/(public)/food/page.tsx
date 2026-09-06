@@ -1336,78 +1336,6 @@ function getCartCount(): number {
   }
 }
 
-// function Header() {
-//   const [cartCount, setCartCount] = useState(0);
-
-//   useEffect(() => {
-//     function refresh() {
-//       setCartCount(getCartCount());
-//     }
-//     refresh();
-//     window.addEventListener("storage", refresh);
-//     window.addEventListener("focus", refresh);
-//     return () => {
-//       window.removeEventListener("storage", refresh);
-//       window.removeEventListener("focus", refresh);
-//     };
-//   }, []);
-
-//   return (
-//     <header
-//       style={{
-//         position: "sticky",
-//         top: 0,
-//         zIndex: 50,
-//         background: "#fff",
-//         borderBottom: "1px solid #f0e5d6",
-//       }}
-//     >
-//       <div
-//         className="container-site"
-//         style={{
-//           minHeight: 78,
-//           display: "flex",
-//           alignItems: "center",
-//           justifyContent: "space-between",
-//           gap: 25,
-//         }}
-//       >
-//         <Link href="/food">
-//           <img
-//             src="/images/sreshta-food-logo.png"
-//             alt="Sreshta Foods"
-//             // style={{ width: 165 }}
-//             className="food-header-logo"
-//           />
-//         </Link>
-
-//         <nav style={{ display: "flex", gap: 25 }}>
-//           <Link href="/food">Home</Link>
-//           <Link href="/food/products">Products</Link>
-//           <Link href="/food/categories/dry-fruits">Categories</Link>
-//         </nav>
-
-//         <div style={{ display: "flex", gap: 10, alignItems: "center" }}>
-//           <Link
-//             href="/food/track"
-//             className="btn-secondary"
-//             style={{ borderColor: "#f59e0b", color: "#b45309" }}
-//           >
-//             Track Order
-//           </Link>
-//           <Link
-//             href="/food/cart"
-//             className="btn-primary"
-//             style={{ background: "#d97706" }}
-//           >
-//             🛒 Cart{cartCount > 0 ? ` (${cartCount})` : ""}
-//           </Link>
-//         </div>
-//       </div>
-//     </header>
-//   );
-// }
-
 function Header() {
   const [cartCount, setCartCount] = useState(0);
 
@@ -1432,46 +1360,37 @@ function Header() {
         zIndex: 50,
         background: "#fff",
         borderBottom: "1px solid #f0e5d6",
-        overflowX: "hidden",
       }}
     >
       <div
-        className="container-site food-header-bar"
+        className="container-site"
         style={{
-          minHeight: 64,
+          minHeight: 78,
           display: "flex",
           alignItems: "center",
           justifyContent: "space-between",
-          gap: 10,
-          maxWidth: "100%",
+          gap: 25,
         }}
       >
-        <Link href="/food" style={{ flexShrink: 0 }}>
+        <Link href="/food">
           <img
             src="/images/sreshta-food-logo.png"
             alt="Sreshta Foods"
+            // style={{ width: 165 }}
             className="food-header-logo"
           />
         </Link>
 
-        <nav className="food-header-nav" style={{ display: "flex", gap: 16 }}>
+        <nav style={{ display: "flex", gap: 25 }}>
           <Link href="/food">Home</Link>
           <Link href="/food/products">Products</Link>
           <Link href="/food/categories/dry-fruits">Categories</Link>
         </nav>
 
-        <div
-          className="food-header-actions"
-          style={{
-            display: "flex",
-            gap: 8,
-            alignItems: "center",
-            flexShrink: 0,
-          }}
-        >
+        <div style={{ display: "flex", gap: 10, alignItems: "center" }}>
           <Link
             href="/food/track"
-            className="btn-secondary food-track-btn"
+            className="btn-secondary"
             style={{ borderColor: "#f59e0b", color: "#b45309" }}
           >
             Track Order
@@ -1479,12 +1398,7 @@ function Header() {
           <Link
             href="/food/cart"
             className="btn-primary"
-            style={{
-              background: "#d97706",
-              minHeight: 40,
-              padding: "0 12px",
-              whiteSpace: "nowrap",
-            }}
+            style={{ background: "#d97706" }}
           >
             🛒 Cart{cartCount > 0 ? ` (${cartCount})` : ""}
           </Link>

@@ -1103,31 +1103,3 @@ table {
   }
 }
 
-/* Food home: kill horizontal scroll on mobile */
-.food-filters {
-  grid-template-columns: 1fr 220px;
-}
-
-@media (max-width: 760px) {
-  .food-filters {
-    grid-template-columns: 1fr;
-  }
-
-  .food-header-nav {
-    display: none !important;
-  }
-
-  .food-track-btn {
-    display: none !important; /* keeps header to logo + cart only */
-  }
-
-  .food-header-logo {
-    width: clamp(96px, 28vw, 140px) !important;
-  }
-}
-
-html,
-body {
-  max-width: 100%;
-  overflow-x: hidden;
-}
